@@ -1,0 +1,23 @@
+version: '3'
+services:
+  frontend:
+    image: sidd003/frontend-app:20240826103811
+    ports:
+      - "3000:3000"
+
+  backend:
+    image: sidd003/backend-app:20240826103811
+    ports:
+      - "5000:5000"
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/mydatabase
+
+  mongo:
+    image: mongo:20240826103811
+    volumes:
+      - mongo-data:/data/db
+    ports:
+      - "27017:27017"
+
+volumes:
+  mongo-data:
